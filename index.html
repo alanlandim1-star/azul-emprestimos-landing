@@ -505,6 +505,21 @@
     document.getElementById("telefone").addEventListener("input", e => {
       e.target.value = onlyNumbers(e.target.value).slice(0,13);
     });
+    function formatMoneyBR(value){
+  const numbers = String(value || "").replace(/\D/g, "");
+  const amount = Number(numbers) / 100;
+
+  return amount.toLocaleString("pt-BR", {
+    style: "currency",
+    currency: "BRL"
+  });
+}
+
+document.getElementById("valor").addEventListener("input", e => {
+  e.target.value = formatMoneyBR(e.target.value);
+});
+
+document.getElementById("leadForm").addEventListener("submit", async (event) => {
 
     document.getElementById("leadForm").addEventListener("submit", async (event) => {
       event.preventDefault();
